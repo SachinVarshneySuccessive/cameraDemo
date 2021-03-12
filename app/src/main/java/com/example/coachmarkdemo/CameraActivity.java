@@ -1,5 +1,6 @@
 package com.example.coachmarkdemo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
@@ -16,21 +17,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.capturesignature.OnSignedCaptureListener;
+import com.capturesignature.SignatureDialogFragment;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CameraActivity extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity implements OnSignedCaptureListener {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     String currentPhotoPath;
     Uri photoURI;
     ImageView imageView;
     Button clickImage;
     Button cropImage;
+    Button captureSignature;
 
 
     @Override
@@ -40,6 +46,8 @@ public class CameraActivity extends AppCompatActivity {
         imageView = findViewById(R.id.image);
         clickImage = findViewById(R.id.clickImage);
         cropImage = findViewById(R.id.cropImage);
+        captureSignature = findViewById(R.id.captureSignature);
+
 
         clickImage.setOnClickListener(view -> dispatchTakePictureIntent());
 
@@ -48,8 +56,17 @@ public class CameraActivity extends AppCompatActivity {
             CropImage.activity(photoURI)
                     .start(this);
         });
+
+        captureSignature.setOnClickListener(view -> {
+showDialog();
+        });
     }
 
+
+    private void showDialog(){
+        SignatureDialogFragment signatureDialogFragment = new SignatureDialogFragment(this);
+        signatureDialogFragment.show(getSupportFragmentManager(),"Signature");
+    }
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -126,6 +143,7 @@ public class CameraActivity extends AppCompatActivity {
 //            imageView.setImageBitmap(imageBitmap);
 
             setPic();
+
         }
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
@@ -140,4 +158,8 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onSignatureCaptured(@NotNull Bitmap bitmap, @NotNull String fileUri) {
+        imageView.setImageBitmap(bitmap);
+    }
 }

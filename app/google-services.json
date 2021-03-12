@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "788085851697",
+    "project_id": "dynamic-link-demo-ef604",
+    "storage_bucket": "dynamic-link-demo-ef604.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788085851697:android:30ae4fe2176becab9f3710",
+        "android_client_info": {
+          "package_name": "com.example.coachmarkdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "788085851697-5sg99qvj7iqvicmcvdkgo92hbriburr0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFnYBOSfdkNIc2L7Ref4yZHhQjwL12iCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "788085851697-5sg99qvj7iqvicmcvdkgo92hbriburr0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
