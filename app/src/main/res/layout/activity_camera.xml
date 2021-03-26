@@ -47,5 +47,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cropImage"
         android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/otp"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="go otp"
+        android:paddingHorizontal="16dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/captureSignature"
+        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

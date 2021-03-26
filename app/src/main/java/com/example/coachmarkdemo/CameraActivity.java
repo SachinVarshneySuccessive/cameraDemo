@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class CameraActivity extends AppCompatActivity implements OnSignedCaptureListener {
+public class    CameraActivity extends AppCompatActivity implements OnSignedCaptureListener {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     String currentPhotoPath;
     Uri photoURI;
@@ -37,6 +37,7 @@ public class CameraActivity extends AppCompatActivity implements OnSignedCapture
     Button clickImage;
     Button cropImage;
     Button captureSignature;
+    Button otp;
 
 
     @Override
@@ -47,6 +48,7 @@ public class CameraActivity extends AppCompatActivity implements OnSignedCapture
         clickImage = findViewById(R.id.clickImage);
         cropImage = findViewById(R.id.cropImage);
         captureSignature = findViewById(R.id.captureSignature);
+        otp = findViewById(R.id.otp);
 
 
         clickImage.setOnClickListener(view -> dispatchTakePictureIntent());
@@ -58,7 +60,11 @@ public class CameraActivity extends AppCompatActivity implements OnSignedCapture
         });
 
         captureSignature.setOnClickListener(view -> {
-showDialog();
+            showDialog();
+        });
+
+        otp.setOnClickListener(view -> {
+            startActivity(new Intent(this, Otpactivity.class));
         });
     }
 
