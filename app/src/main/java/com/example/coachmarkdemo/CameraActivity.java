@@ -38,6 +38,7 @@ public class    CameraActivity extends AppCompatActivity implements OnSignedCapt
     Button cropImage;
     Button captureSignature;
     Button otp;
+    Button sendMsg;
 
 
     @Override
@@ -48,6 +49,7 @@ public class    CameraActivity extends AppCompatActivity implements OnSignedCapt
         clickImage = findViewById(R.id.clickImage);
         cropImage = findViewById(R.id.cropImage);
         captureSignature = findViewById(R.id.captureSignature);
+        sendMsg = findViewById(R.id.sendMsg);
         otp = findViewById(R.id.otp);
 
 
@@ -66,10 +68,12 @@ public class    CameraActivity extends AppCompatActivity implements OnSignedCapt
         otp.setOnClickListener(view -> {
             startActivity(new Intent(this, Otpactivity.class));
         });
+
+        sendMsg.setOnClickListener(view -> openWhatsApp());
     }
 
 
-    private void showDialog(){
+    private void    showDialog(){
         SignatureDialogFragment signatureDialogFragment = new SignatureDialogFragment(this);
         signatureDialogFragment.show(getSupportFragmentManager(),"Signature");
     }
@@ -137,6 +141,23 @@ public class    CameraActivity extends AppCompatActivity implements OnSignedCapt
 
         Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
         imageView.setImageBitmap(bitmap);
+    }
+
+    public void openWhatsApp(){
+        try {
+            String text = "This is a test";// Replace with your message.
+
+            String toNumber = "919761646642"; // Replace with mobile phone number without +Sign or leading zeros, but with country code
+            //Suppose your country is India and your phone number is “xxxxxxxxxx”, then you need to send “91xxxxxxxxxx”.
+
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("http://api.whatsapp.com/send?phone="+toNumber +"&text="+text));
+            startActivity(intent);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
 
